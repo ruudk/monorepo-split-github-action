@@ -51,6 +51,8 @@ note "Cleaning destination repository of old files"
 find "$CLONE_DIR" | grep -v "^$CLONE_DIR/\.git" | grep -v "^$CLONE_DIR$" | xargs rm -rf # delete all files (to handle deletions)
 ls -la "$CLONE_DIR"
 
+COMMIT_MESSAGE=$(git show -s --format=%B "$GITHUB_SHA")
+
 note "Copying contents to git repo"
 
 cp -r "$PACKAGE_DIRECTORY"/* "$CLONE_DIR"
@@ -58,8 +60,6 @@ cd "$CLONE_DIR"
 ls -la
 
 note "Adding git commit"
-
-COMMIT_MESSAGE=$(git --git-dir "$PACKAGE_DIRECTORY" show -s --format=%B "$GITHUB_SHA")
 
 git add .
 git status
