@@ -59,8 +59,7 @@ ls -la
 
 note "Adding git commit"
 
-ORIGIN_COMMIT="https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
-COMMIT_MESSAGE="${COMMIT_MESSAGE/ORIGIN_COMMIT/$ORIGIN_COMMIT}"
+COMMIT_MESSAGE=$(git --git-dir "$PACKAGE_DIRECTORY" show -s --format=%B "$GITHUB_SHA")
 
 git add .
 git status
