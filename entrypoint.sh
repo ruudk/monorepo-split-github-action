@@ -6,9 +6,6 @@ set -e
 # script fails if trying to access to an undefined variable
 set -u
 
-# this allows for copying hidden files when using `cp -r *`
-shopt -s dotglob
-
 function note()
 {
     MESSAGE=$1;
@@ -58,7 +55,7 @@ COMMIT_MESSAGE=$(git show -s --format=%B "$GITHUB_SHA")
 
 note "Copying contents to git repo"
 
-cp -r "$PACKAGE_DIRECTORY"/* "$CLONE_DIR"
+cp -Ra "$PACKAGE_DIRECTORY"/ "$CLONE_DIR"
 cd "$CLONE_DIR"
 ls -la
 
