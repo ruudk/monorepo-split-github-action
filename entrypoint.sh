@@ -6,6 +6,9 @@ set -e
 # script fails if trying to access to an undefined variable
 set -u
 
+# this allows for copying hidden files when using `cp -r *`
+shopt -s dotglob
+
 function note()
 {
     MESSAGE=$1;
