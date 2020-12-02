@@ -3,6 +3,8 @@
 # if a command fails it stops the execution
 set -e
 
+set -x
+
 # script fails if trying to access to an undefined variable
 set -u
 
@@ -55,7 +57,7 @@ COMMIT_MESSAGE=$(git show -s --format=%B "$GITHUB_SHA")
 
 note "Copying contents to git repo"
 
-cp -Ra "$PACKAGE_DIRECTORY"/ "$CLONE_DIR"
+cp -Ra "$PACKAGE_DIRECTORY/." "$CLONE_DIR"
 cd "$CLONE_DIR"
 ls -la
 
